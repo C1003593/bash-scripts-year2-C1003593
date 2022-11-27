@@ -1,9 +1,24 @@
 #!/bin/sh
+echo ENSURE YOU ARE A ROOT USER BEFORE USING THIS BASH SCRIPT
 echo "Updating system"
+sudo apt update -y
 sudo apt upgrade -y
 echo "Enter task you would like performed: "
 echo "Install LAMP stack (All tools needed to host a website locally) - type LAMP for this"
-Function_test(){
-	echo "Test for function"
+LAMP_Install(){
+	apt install apache2 -y
+	apt install apache2 apache2-utils -y
+	apt install lynx -y
+	systemctl restart apache2
+	apt install chromium-browser -y
+	#Issues with this part here
+	#apt install mariadb-server mariadb-client -y
+	#echo ""
+	#echo "Press enter here as a password can be setup later"
+	apt install php -y
+	systemctl restart apache2
+
+	
+	
 }
-Function_test
+LAMP_Install
