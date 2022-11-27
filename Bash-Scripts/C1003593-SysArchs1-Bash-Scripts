@@ -1,2 +1,9 @@
 #!/bin/sh
+echo "Updating system"
 sudo apt upgrade -y
+echo "Enter task you would like performed: "
+echo "Install LAMP stack (All tools needed to host a website locally) - type LAMP for this"
+Function_test(){
+	echo "Test for function"
+}
+Function_test
