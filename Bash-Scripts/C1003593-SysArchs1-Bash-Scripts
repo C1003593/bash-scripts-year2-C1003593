@@ -1,10 +1,4 @@
 #!/bin/sh
-echo ENSURE YOU ARE A ROOT USER BEFORE USING THIS BASH SCRIPT
-echo "Updating system"
-sudo apt update -y
-sudo apt upgrade -y
-echo "Enter task you would like performed: "
-echo "Install LAMP stack (All tools needed to host a website locally) - type LAMP for this"
 LAMP_Install(){
 	apt install apache2 -y
 	apt install apache2 apache2-utils -y
@@ -13,16 +7,29 @@ LAMP_Install(){
 	apt install chromium-browser -y
 	apt install mariadb-server mariadb-client -y
 	#Issues with this part here
-	sql_secure_installation
+	#mysql_secure_installation
 
 	apt install php -y
+	a2enmod php8.1
 	systemctl restart apache2
-	#These commands move into the html directory and write a php info file
 	cd /var/www/html
 	file="phpinfo.php"
 	echo "<?php phpinfo(); ?>" > $file
 	cat $file
 	
-	
 }
-LAMP_Install
+
+echo ENSURE YOU ARE A ROOT USER BEFORE USING THIS BASH SCRIPT
+echo "Updating system"
+apt update -y
+ apt upgrade -y
+echo "List of tasks available: "
+echo "Install LAMP stack (All tools needed to host a website locally) - Enter 'LAMP' to install LAMP stack"
+echo ""
+
+
+read -p "Please enter task you would like to be performed: " TASK 
+if [ $TASK=="LAMP" ]
+	then LAMP_Install
+
+fi
