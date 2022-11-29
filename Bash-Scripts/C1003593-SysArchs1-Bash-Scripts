@@ -11,13 +11,17 @@ LAMP_Install(){
 	apt install lynx -y
 	systemctl restart apache2
 	apt install chromium-browser -y
+	apt install mariadb-server mariadb-client -y
 	#Issues with this part here
-	#apt install mariadb-server mariadb-client -y
-	#echo ""
-	#echo "Press enter here as a password can be setup later"
+	sql_secure_installation
+
 	apt install php -y
 	systemctl restart apache2
-
+	#These commands move into the html directory and write a php info file
+	cd /var/www/html
+	file="phpinfo.php"
+	echo "<?php phpinfo(); ?>" > $file
+	cat $file
 	
 	
 }
