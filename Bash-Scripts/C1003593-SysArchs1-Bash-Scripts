@@ -6,8 +6,6 @@ LAMP_Install(){
 	systemctl restart apache2 #This is here to insure that the web server is working properly after being installed
 	apt install chromium-browser -y
 	apt install mariadb-server mariadb-client -y
-	#Issues with this part here
-	#mysql_secure_installation
 
 	apt install php -y
 	a2enmod php8.1
@@ -15,7 +13,6 @@ LAMP_Install(){
 	cd /var/www/html
 	file="phpinfo.php"
 	echo "<?php phpinfo(); ?>" > $file #This writes a phpinfo file 
-	cat $file
 	
 }
 
@@ -25,6 +22,11 @@ TREE_DirectoryStructure(){
 	cd /home #A folder called home will always exist no matter the username 
 	tree
 
+
+}
+
+Send_Email(){
+	#Email is very hard to get to work
 
 }
 
@@ -44,6 +46,7 @@ do
 	echo ""
 	echo "Show directory structure - Enter 'TREE' to install and show directory structure"
 	echo ""
+	echo "Send email - Enter 'EMAIL' to send an email "
 
 	#This command reads what the user enters and stores it in the value TASK
 	read -p "Please enter task you would like to be performed: " TASK 
@@ -52,6 +55,8 @@ do
 			"lamp") LAMP_Install ;; #This is so the user can type it in lower case if they wish to
 			"TREE") TREE_DirectoryStructure ;;
 			"tree") TREE_DirectoryStructure ;;
+			"email") Send_Email ;;
+			"EMAIL") Send_Email ;;
 
 		esac
 
