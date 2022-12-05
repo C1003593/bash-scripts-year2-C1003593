@@ -19,17 +19,27 @@ LAMP_Install(){
 	
 }
 
+TREE_DirectoryStructure(){
+	apt install tree 
+	cd 
+	tree
+
+
+}
+
 echo ENSURE YOU ARE A ROOT USER BEFORE USING THIS BASH SCRIPT
 echo "Updating system"
 apt update -y
  apt upgrade -y
 echo "List of tasks available: "
-echo "Install LAMP stack (All tools needed to host a website locally) - Enter '1' to install LAMP stack"
+echo "Install LAMP stack (All tools needed to host a website locally) - Enter 'LAMP' to install LAMP stack"
+echo ""
+echo "Show directory structure - Enter 'TREE' to install and show directory structure"
 echo ""
 
 
 read -p "Please enter task you would like to be performed: " TASK 
-if [ $TASK==1 ]
-	then LAMP_Install
-
-fi
+case $TASK in
+"LAMP") LAMP_Install ;;
+"TREE") TREE_DirectoryStructure ;;
+esac
