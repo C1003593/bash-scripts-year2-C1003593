@@ -3,7 +3,7 @@ LAMP_Install(){
 	apt install apache2 -y
 	apt install apache2 apache2-utils -y
 	apt install lynx -y
-	systemctl restart apache2
+	systemctl restart apache2 #This is here to insure that the web server is working properly after being installed
 	apt install chromium-browser -y
 	apt install mariadb-server mariadb-client -y
 	#Issues with this part here
@@ -14,14 +14,15 @@ LAMP_Install(){
 	systemctl restart apache2
 	cd /var/www/html
 	file="phpinfo.php"
-	echo "<?php phpinfo(); ?>" > $file
+	echo "<?php phpinfo(); ?>" > $file #This writes a phpinfo file 
 	cat $file
 	
 }
 
 TREE_DirectoryStructure(){
 	apt install tree 
-	cd ~/home
+	cd 
+	cd /home #A folder called home will always exist no matter the username 
 	tree
 
 
@@ -29,25 +30,40 @@ TREE_DirectoryStructure(){
 
 echo ENSURE YOU ARE A ROOT USER BEFORE USING THIS BASH SCRIPT
 echo "Updating system"
-apt update -y
-apt upgrade -y
+	apt update -y
+	apt upgrade -y
 choice = "Y"
 
-
 while [ $choice=="Y" ]
-echo ""
-echo ""
-echo "List of tasks available: "
-echo ""
-echo "Install LAMP stack (All tools needed to host a website locally) - Enter 'LAMP' to install LAMP stack"
-echo ""
-echo "Show directory structure - Enter 'TREE' to install and show directory structure"
-echo ""
+do
+	echo ""
+	echo ""
+	echo "List of tasks available: "
+	echo ""
+	echo "Install LAMP stack (All tools needed to host a website locally) - Enter 'LAMP' to install LAMP stack"
+	echo ""
+	echo "Show directory structure - Enter 'TREE' to install and show directory structure"
+	echo ""
 
-#This command reads what the user enters and stores it in the value TASK
-read -p "Please enter task you would like to be performed: " TASK 
-case $TASK in #This command tells the terminal what to do depending on what is entered
-"LAMP") LAMP_Install ;;
-"TREE") TREE_DirectoryStructure ;;
-esac
+	#This command reads what the user enters and stores it in the value TASK
+	read -p "Please enter task you would like to be performed: " TASK 
+		case $TASK in #This command tells the terminal what to do depending on what is entered
+			"LAMP") LAMP_Install ;;
+			"lamp") LAMP_Install ;; #This is so the user can type it in lower case if they wish to
+			"TREE") TREE_DirectoryStructure ;;
+			"tree") TREE_DirectoryStructure ;;
+
+		esac
+
+	echo ""
+	echo ""
+	read -p "Please enter 'Y' if you would like to perform another task or enter anything else if you would like to quit: " decision
+		if [ $decision != "Y" ] #This will get the user out of the while loop if they do not select Y
+		then
+			break
+		else
+			echo ""
+		fi
+
+	
 done
