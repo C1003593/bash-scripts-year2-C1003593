@@ -30,12 +30,6 @@ Send_Email(){
 	echo "pppp"
 }
 
-Create_User(){
-	adduser NewUser
-
-
-}
-
 echo ENSURE YOU ARE A ROOT USER BEFORE USING THIS BASH SCRIPT
 echo "Updating system"
 	apt update -y
@@ -54,8 +48,6 @@ do
 	echo ""
 	echo "Send email - Enter 'EMAIL' to send an email "
 	echo ""
-	echo "Create new user - Enter 'USER' to create a new user"
-	echo ""
 
 	#This command reads what the user enters and stores it in the value TASK
 	read -p "Please enter task you would like to be performed: " TASK 
@@ -66,8 +58,6 @@ do
 			"tree") TREE_DirectoryStructure ;;
 			"email") Send_Email ;;
 			"EMAIL") Send_Email ;;
-			"USER") Create_User ;;
-			"user") Create_User ;;
 
 		esac
 
@@ -75,9 +65,6 @@ do
 	echo ""
 	read -p "Please enter 'Y' if you would like to perform another task or enter anything else if you would like to quit: " decision
 		if [ $decision != "Y" ] #This will get the user out of the while loop if they do not select Y
-		then
-			break
-		elif [ $decision != "y" ]
 		then
 			break
 		else
