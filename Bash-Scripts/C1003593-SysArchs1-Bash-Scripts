@@ -25,10 +25,6 @@ TREE_DirectoryStructure(){
 
 }
 
-Send_Email(){
-	#Email is very hard to get to work
-	echo ""
-}
 
 Generate_Password(){
 	#This will generate a password for the user based on their username and the date
@@ -64,8 +60,6 @@ do
 	echo ""
 	echo "Show directory structure - Enter 'TREE' to install and show directory structure"
 	echo ""
-	echo "Send email - Enter 'EMAIL' to send an email "
-	echo ""
 	echo "Generate password to use if you dont have one - enter 'PASS' to generate a password"
 	echo ""
 
@@ -76,8 +70,6 @@ do
 			"lamp") LAMP_Install ;; #This is so the user can type it in lower case if they wish to
 			"TREE") TREE_DirectoryStructure ;;
 			"tree") TREE_DirectoryStructure ;;
-			"email") Send_Email ;;
-			"EMAIL") Send_Email ;;
 			"PASS") Generate_Password ;;
 			"pass") Generate_Password ;;
 
@@ -93,5 +85,5 @@ do
 			echo ""
 		fi
 
-	
+	#I attempted to make the program send an email but this didnt work as there is no email server to send it fom.
 done
