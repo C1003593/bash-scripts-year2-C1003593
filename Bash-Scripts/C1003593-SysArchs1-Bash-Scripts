@@ -27,7 +27,25 @@ TREE_DirectoryStructure(){
 
 Send_Email(){
 	#Email is very hard to get to work
-	echo "pppp"
+	echo ""
+}
+
+Generate_Password(){
+	#This will generate a password for the user based on their username and the date
+	echo "Generating password... "
+	PWORD1="$(whoami)" #The first half of the password will be the user's name
+	TIME=`date '+%F_%H:%M:%S'`
+	PASSWORD=$PWORD1$TIME
+	echo $PASSWORD #This will be stored to a file the user can access
+	read -p "Please enter your username: " USERNAME #This is used to get round the issue of root not having a desktop
+	echo "THIS PASSWORD IS STORED IN A FILE CALLED 'PASSWORD' ON YOUR USER DOCUMENTS"
+	cd
+	cd /home/$USERNAME
+	PWordFile="Password.txt"
+	echo "$PASSWORD" > $PWordFile
+
+
+
 }
 
 echo ENSURE YOU ARE A ROOT USER BEFORE USING THIS BASH SCRIPT
@@ -48,6 +66,8 @@ do
 	echo ""
 	echo "Send email - Enter 'EMAIL' to send an email "
 	echo ""
+	echo "Generate password to use if you dont have one - enter 'PASS' to generate a password"
+	echo ""
 
 	#This command reads what the user enters and stores it in the value TASK
 	read -p "Please enter task you would like to be performed: " TASK 
@@ -58,6 +78,8 @@ do
 			"tree") TREE_DirectoryStructure ;;
 			"email") Send_Email ;;
 			"EMAIL") Send_Email ;;
+			"PASS") Generate_Password ;;
+			"pass") Generate_Password ;;
 
 		esac
 
