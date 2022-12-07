@@ -84,6 +84,4 @@ do
 		else
 			echo ""
 		fi
-
-	#I attempted to make the program send an email but this didnt work as there is no email server to send it fom.
 done
